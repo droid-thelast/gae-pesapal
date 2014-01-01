@@ -1,0 +1,6 @@
+
+*.pyc
+
+dist
+gae_pesapal.egg-info
+test/lib
