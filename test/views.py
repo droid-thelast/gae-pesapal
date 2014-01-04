@@ -35,8 +35,6 @@ class PayView(webapp.RequestHandler):
 
     def get(self):
 
-        client = PESAPAL_CLIENT
-
         transaction_tracking_id = self.request.get(
             'pesapal_transaction_tracking_id'
         )
@@ -57,7 +55,7 @@ class PayView(webapp.RequestHandler):
             )
             payment.put()
 
-            payment.check_status(client)
+            payment.check_status()
 
             del self.session['pesapal_ref']
             del self.session['pesapal_amount']
@@ -91,12 +89,10 @@ class PayView(webapp.RequestHandler):
               'oauth_callback': oauth_callback
             }
 
-            pesapal_request = client.postDirectOrder(
+            src = pesapal.postDirectOrder(
                 post_params,
                 request_data
             )
-            src = pesapal_request.to_url()
-
 
             template_values = {
                 'src': src,

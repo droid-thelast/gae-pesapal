@@ -108,8 +108,6 @@ class TestCase(unittest.TestCase):
 
 class StatusCheckTestCase(TestCase):
 
-    client = PESAPAL_CLIENT
-
     def setUp(self):
 
         super(StatusCheckTestCase, self).setUp()
@@ -132,34 +130,34 @@ class StatusCheckTestCase(TestCase):
 
     @mock_urllib('PENDING')
     def test_pending(self):
-        self.payment.check_status(self.client)
+        self.payment.check_status()
         assert self.payment.get_status_string() == 'pending'
 
     @mock_urllib('COMPLETED')
     def test_completed(self):
-        self.payment.check_status(self.client)
+        self.payment.check_status()
         assert self.payment.get_status_string() == 'completed'
 
     @mock_urllib('FAILED')
     def test_failed(self):
-        self.payment.check_status(self.client)
+        self.payment.check_status()
         assert self.payment.get_status_string() == 'failed'
 
     @mock_urllib('INVALID')
     def test_invalid(self):
-        self.payment.check_status(self.client)
+        self.payment.check_status()
         assert self.payment.get_status_string() == 'invalid'
 
     @mock_urllib('REFUNDED')
     def test_refunded(self):
-        self.payment.check_status(self.client)
+        self.payment.check_status()
         assert self.payment.get_status_string() == 'refunded'
 
     @mock_urllib('PENDING')
     def test_overdue(self):
         self.payment.date_created = datetime(1990, 7, 9)
         self.payment.put()
-        self.payment.check_status(self.client)
+        self.payment.check_status()
         assert self.payment.get_status_string() == 'overdue'
 
 unittest.main()

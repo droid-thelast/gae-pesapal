@@ -7,6 +7,7 @@ from datetime import datetime, date, tzinfo, timedelta
 from google.appengine.ext import ndb
 from google.appengine.ext import deferred
 
+import pesapal
 
 class BasePesapalPayment(ndb.Model):
 
@@ -94,14 +95,14 @@ class BasePesapalPayment(ndb.Model):
         status = self.get_status_int(status_string)
         self.status = status
 
-    def check_status(self, client):
+    def check_status(self):
 
         data = {
           'pesapal_merchant_reference': self.ref,
           'pesapal_transaction_tracking_id': self.transaction_tracking_id
         }
-        request = client.queryPaymentDetails(data)
-        url = request.to_url()
+
+        url = pesapal.queryPaymentDetails(data)
 
         ctx = ndb.get_context()
         res = ctx.urlfetch(url).get_result()
@@ -136,6 +137,5 @@ class BasePesapalPayment(ndb.Model):
         else:
             deferred.defer(
                 self.check_status,
-                client,
                 _countdown=self.DEFER_STATUS_CHECK_BY_MINUTES
             )
