@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='gae-pesapal',
-    version='0.0.1',
+    version='0.0.2',
     description='Pesapal NDB Model',
     author='Mitchel Kelonye',
     author_email='kelonyemitchel@gmail.com',
