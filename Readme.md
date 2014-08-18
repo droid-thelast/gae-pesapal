@@ -91,6 +91,9 @@ class PayView(webapp.RequestHandler):
             'pesapal_merchant_reference'
         )
 
+        # if the request contains the details above, we store the payment in a model otherwise,
+        # we display the payment form in an iframe
+
         if transaction_tracking_id and merchant_reference:
 
             # store payment details in a model
