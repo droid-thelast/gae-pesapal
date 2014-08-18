@@ -103,6 +103,21 @@ class PayView(webapp.RequestHandler):
             )
         self.response.out.write(template.render(path, template_values))
 
+# template.html
+#
+# <style>
+#     body{
+#       font-size: 15px;
+#       padding: 50px;
+#     }
+#     iframe{
+#       width: 100%;
+#       height: 550px;
+#       border: 0px none;
+#     }
+#   </style>
+# 
+# <iframe src="{{src}}" scrolling="yes"></iframe>
 
 urls = [
     ('/', PayView),
