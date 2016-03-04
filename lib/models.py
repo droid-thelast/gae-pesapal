@@ -112,12 +112,16 @@ class BasePesapalPayment(ndb.Model):
         if 'pesapal_response_data=' not in data:
             return
 
+        print 'checking payment status'
+
         pesapal_transaction_tracking_id,\
         payment_method,\
         payment_status,\
         pesapal_merchant_reference = data\
             .split('pesapal_response_data=')[1]\
             .split(',')
+        
+        print data
 
         self.method = payment_method
         self.set_status(payment_status.lower())

@@ -172,7 +172,8 @@ app = webapp.WSGIApplication(urls, debug=True)
 
 Example
 ---
-
+    
+    cp test/conf.sample.yml test/conf.yml # and polutate conf.yml
     $ make deps example
 
 Test

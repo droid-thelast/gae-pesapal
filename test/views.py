@@ -66,7 +66,7 @@ class PayView(webapp.RequestHandler):
 
         else:
 
-            amount = '200000'
+            amount = '2000'
             desc = 'Xbox purchase'
             ref = Payment.get_ref()
             email = 'me@example.com'
@@ -96,6 +96,7 @@ class PayView(webapp.RequestHandler):
 
             template_values = {
                 'src': src,
+                'amount': amount,
             }
 
         path = os.path.join(

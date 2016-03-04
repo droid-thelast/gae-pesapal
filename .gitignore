@@ -4,3 +4,4 @@
 dist
 gae_pesapal.egg-info
 test/lib
+test/conf.yml

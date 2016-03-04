@@ -1,13 +1,16 @@
+import os
+import yaml
 from datetime import datetime, date, tzinfo, timedelta
 from google.appengine.ext import ndb
 from google.appengine.ext import deferred
-
 from lib import pesapal, BasePesapalPayment
 
-
-pesapal.consumer_key = 'H7jjIYLsuYGWZEJnuO8mIEMMPa4K15O6'
-pesapal.consumer_secret = 'C0hFRtwKY+rKfol3usK8ejhgL+s='
-pesapal.testing = True
+with open('conf.yml', 'r') as f:
+    conf = yaml.load(f)
+    print conf
+    pesapal.consumer_key = conf['PESAPAL_KEY']
+    pesapal.consumer_secret = conf['PESAPAL_SECRET']
+    pesapal.testing = True
 
 
 class Payment(BasePesapalPayment):

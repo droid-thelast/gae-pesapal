@@ -18,6 +18,11 @@
     </style>
   </head>
   <body>
+    {% if payment_sucessfull %}
+    <h1>Payment succeeded</h1>
+    {% else %}
+    <h1>Pay {{amount}}</h1>
     <iframe src="{{src}}" scrolling="yes"></iframe>
+    {% endif %}
   </body>
 </html>

@@ -1,7 +1,7 @@
 import os
 
 import sys
-sys.path.insert(0, '/usr/local/google_appengine')
+sys.path.insert(0, '/Users/me/Documents/opt/google-cloud-sdk/platform/google_appengine')
 import dev_appserver
 dev_appserver.fix_sys_path()
 
